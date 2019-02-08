@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "nodescene.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -17,6 +19,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    NodeScene *mainNodeScene;   // the scene where all the nodes will be placed
 };
 
 #endif // MAINWINDOW_H
