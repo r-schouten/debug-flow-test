@@ -2,7 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QObject>
+#include "Node.h"
+#include "inputnode.h"
+#include "serialnode.h"
 namespace Ui {
 class MainWindow;
 }
@@ -17,6 +20,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QList<Node*> nodes;
 };
 
 #endif // MAINWINDOW_H
