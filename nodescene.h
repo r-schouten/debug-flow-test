@@ -5,7 +5,7 @@
 #include <QWidget>
 #include <QGraphicsScene>
 
-class NodeScene : public QGraphicsScene
+class NodeScene : public QGraphicsScene   // pass parent to qgraphicsscene to prevent memory leak when deleting?!?
 {
 public:
     NodeScene(QObject *parent = nullptr);

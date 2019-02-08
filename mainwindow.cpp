@@ -6,9 +6,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    mainNodeScene = new NodeScene(this);
-    mainNodeScene->addRect(0,0,50,50);
-    ui->Node_Graphicsview->setScene(mainNodeScene);
+    mainNodeScene = new NodeScene(this);                    //create a custom scene
+    mainNodeScene->addRect(0,0,50,50);                      //add a rectangle (just for testing)
+    ui->Node_Graphicsview->setScene(mainNodeScene);         //add the scene to the graphicsview
 }
 
 MainWindow::~MainWindow()
