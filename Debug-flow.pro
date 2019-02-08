@@ -30,14 +30,18 @@ SOURCES += \
     inputnode.cpp \
     node.cpp \
     serialnode.cpp \
-    serialportreader.cpp
+    serialportreader.cpp \
+    shareddata.cpp \
+    serialportmanager.cpp
 
 HEADERS += \
         mainwindow.h \
     inputnode.h \
     node.h \
     serialnode.h \
-    serialportreader.h
+    serialportreader.h \
+    shareddata.h \
+    serialportmanager.h
 
 FORMS += \
         mainwindow.ui

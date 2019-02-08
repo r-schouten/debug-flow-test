@@ -2,7 +2,7 @@
 #define SERIALPORTREADER_H
 
 #include <QByteArray>
-#include <QtSerialPort/QSerialPort>
+#include <QSerialPort>
 #include <QTextStream>
 #include <QTimer>
 #include <QObject>
@@ -12,7 +12,7 @@ class SerialPortReader : public QObject
     Q_OBJECT
 
 public:
-    explicit SerialPortReader(QSerialPort *serialPort, QObject *parent = nullptr);
+    explicit SerialPortReader(QSerialPort *serialPort);
 
 private slots:
     void handleReadyRead();

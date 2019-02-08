@@ -1,9 +1,6 @@
 #include "serialportreader.h"
 
-#include <QCoreApplication>
-
-SerialPortReader::SerialPortReader(QSerialPort *serialPort, QObject *parent) :
-    QObject(parent),
+SerialPortReader::SerialPortReader(QSerialPort *serialPort) :
     m_serialPort(serialPort),
     m_standardOutput(stdout)
 {
@@ -13,7 +10,8 @@ SerialPortReader::SerialPortReader(QSerialPort *serialPort, QObject *parent) :
 
 void SerialPortReader::handleReadyRead()
 {
-    m_standardOutput << m_serialPort->readAll();
+
+    qDebug(m_serialPort->readLine());
 }
 
 
@@ -25,6 +23,5 @@ void SerialPortReader::handleError(QSerialPort::SerialPortError serialPortError)
                             .arg(m_serialPort->portName())
                             .arg(m_serialPort->errorString())
                          << endl;
-        QCoreApplication::exit(1);
     }
 }

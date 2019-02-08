@@ -6,8 +6,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
     qDebug("started");
-    Node *newNode = new SerialNode();
+
+    sharedData = new SharedData();
+    Node *newNode = new SerialNode(sharedData);
     nodes.append(newNode);
 }
 

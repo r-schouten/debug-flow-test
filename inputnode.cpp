@@ -1,6 +1,7 @@
 #include "inputnode.h"
 
-InputNode::InputNode()
+InputNode::InputNode(SharedData *sharedData)
+    :Node(sharedData)
 {
 
 }
