@@ -41,7 +41,8 @@ HEADERS += \
     serialnode.h \
     serialportreader.h \
     shareddata.h \
-    serialportmanager.h
+    serialportmanager.h \
+    serialsettings.h
 
 FORMS += \
         mainwindow.ui

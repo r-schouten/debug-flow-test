@@ -12,7 +12,8 @@ private:
 public:
     Node(SharedData* sharedData);
     SharedData* sharedData;
-
+    bool error = false;
+    QString errorMessage = "";
 };
 
 #endif // NODE_H
