@@ -32,7 +32,8 @@ SOURCES += \
     serialnode.cpp \
     shareddata.cpp \
     serialportmanager.cpp \
-    serialportHandler.cpp
+    serialportHandler.cpp \
+    nodescene.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +43,9 @@ HEADERS += \
     shareddata.h \
     serialportmanager.h \
     serialsettings.h \
-    serialportHandler.h
+    serialportHandler.h \
+    nodescene.h
+
 
 FORMS += \
         mainwindow.ui
