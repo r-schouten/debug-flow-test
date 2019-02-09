@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-
+QT += serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Debug-flow
@@ -27,11 +27,25 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
+    inputnode.cpp \
+    node.cpp \
+    serialnode.cpp \
+    shareddata.cpp \
+    serialportmanager.cpp \
+    serialportHandler.cpp \
     nodescene.cpp
 
 HEADERS += \
         mainwindow.h \
+    inputnode.h \
+    node.h \
+    serialnode.h \
+    shareddata.h \
+    serialportmanager.h \
+    serialsettings.h \
+    serialportHandler.h \
     nodescene.h
+
 
 FORMS += \
         mainwindow.ui
