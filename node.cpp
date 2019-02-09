@@ -9,7 +9,7 @@ Node::Node(SharedData *sharedData)
 QRectF Node::boundingRect() const
 {
 
-    return QRectF(-45,-45,45,45);
+    return QRectF(-45,-45,90,90);
 }
 
 void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
