@@ -12,13 +12,15 @@ public:
     QSerialPort::FlowControl flowControl = QSerialPort::NoFlowControl;
     QSerialPort::Parity parity = QSerialPort::NoParity;
     QSerialPort::StopBits stopBits = QSerialPort::OneStop;
+    QSerialPort::DataBits dataBits = QSerialPort::Data8;
 
-    bool compare(SerialSettings otherSettings)
+    bool compare(SerialSettings* otherSettings)
     {
-        if(baudRate != otherSettings.baudRate) return false;
-        if(flowControl != otherSettings.flowControl) return false;
-        if(parity != otherSettings.parity) return false;
-        if(stopBits != otherSettings.stopBits) return false;
+        if(baudRate != otherSettings->baudRate) return false;
+        if(flowControl != otherSettings->flowControl) return false;
+        if(parity != otherSettings->parity) return false;
+        if(stopBits != otherSettings->stopBits) return false;
+        if(dataBits!= otherSettings->dataBits) return false;
         return true;
     }
 };

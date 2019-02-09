@@ -10,6 +10,7 @@ class InputNode : public Node
     Q_OBJECT
 public:
     InputNode(SharedData* sharedData);
+    bool open = false;
 };
 
 #endif // INPUTNODE_H

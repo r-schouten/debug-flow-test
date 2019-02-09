@@ -1,36 +1,64 @@
 #include "serialportmanager.h"
 
-SerialPortManager::SerialPortManager(SharedData* sharedData)
-    :sharedData(sharedData)
+SerialPortManager::SerialPortManager()
 {
 
 }
-QString SerialPortManager::findReader(SerialPortReader* resultSerialPortReader, SerialSettings requestedSerialSettings)
+QString SerialPortManager::findReader(SerialPortHandler*& resultSerialPortHandler, bool* found, SerialSettings *requestedSerialSettings)
 {
-    resultSerialPortReader = nullptr;
-    foreach(SerialPortReader* serialPort, serialPortReaders)
+    resultSerialPortHandler = nullptr;
+    foreach(SerialPortHandler* serialPort, serialPortHandlers)
     {
-        if(serialPort->serialSettings.portName.compare( requestedSerialSettings.portName),Qt::CaseInsensitive)
+        if(serialPort->serialSettings->portName.compare( requestedSerialSettings->portName, Qt::CaseInsensitive))
         {//found the same port
-            if(serialPort->serialSettings.compare(requestedSerialSettings))
+            if(serialPort->serialSettings->compare(requestedSerialSettings))
             {
-                resultSerialPortReader = serialPort;
+                resultSerialPortHandler = serialPort;
+                *found = true;
                 return nullptr;//no error
             }
             else {
+                *found = true;
                 return "A other node is using the same serial port with different settings";
             }
         }
     }
+    *found = false;
     return "";
 }
-QString SerialPortManager::requestPort(SerialPortReader *serialPortReader, SerialPortManager::SerialSettings *serialSettings)
+SerialPortHandler* SerialPortManager::openNewReader(SerialSettings* serialSettings)
 {
-    SerialPortReader *foundReader;
-    QString potentialError = findPort(foundReader, serialSettings);
+    QSerialPort* newPort = new QSerialPort();
+    SerialPortHandler* newHandler = new SerialPortHandler(newPort, serialSettings);
+    serialPortHandlers.append(newHandler);
+    return newHandler;
+}
+QString SerialPortManager::requestPort(SerialPortHandler *&serialPortHandler, SerialSettings *serialSettings)
+{
+    serialPortHandler = nullptr;
+
+    SerialPortHandler *foundReader = nullptr;
+    bool found = false;
+    QString potentialError = findReader(foundReader, &found, serialSettings);
+    if(found)
+    {
+        if(foundReader == nullptr)
+        {
+             //the node exist but settings are different
+             return potentialError;
+        }
+        else {
+            //succesfully found the reader
+            serialPortHandler = foundReader;
+        }
+    }
+    else {
+       serialPortHandler = openNewReader(serialSettings);
+    }
+    return "";
 }
 
-void SerialPortManager::releasePort(SerialPortReader *serialPortReader)
+void SerialPortManager::releasePort(SerialPortHandler *serialPortHandler)
 {
 
 }

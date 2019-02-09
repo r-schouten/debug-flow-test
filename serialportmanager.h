@@ -1,25 +1,26 @@
 #ifndef SERIALPORTMANAGER_H
 #define SERIALPORTMANAGER_H
 
-#include "serialportreader.h"
+#include "serialportHandler.h"
 #include "shareddata.h"
 #include <QObject>
 #include <QSerialPort>
-#include "serialsettings.h"
 class SerialPortManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit SerialPortManager(SharedData *sharedData);
-    SharedData* sharedData;
+    explicit SerialPortManager();
+    //SharedData* sharedData;
 
-    QString requestPort(SerialPortReader* serialPortReader, SerialSettings* serialSettings);
-    void releasePort(SerialPortReader* serialPortReader);
+    QString requestPort(SerialPortHandler*& serialPortHandler, SerialSettings* serialSettings);
+    void releasePort(SerialPortHandler* serialPortHandler);
 private:
-    QList<SerialPortReader*> serialPortReaders;
+    QList<SerialPortHandler*> serialPortHandlers;
 
 
-    QString findReader(SerialPortReader *resultSerialPortReader, SerialSettings requestedSerialSettings);
+    QString findReader(SerialPortHandler*& resultSerialPortHandler, bool* found, SerialSettings* requestedSerialSettings);
+    SerialPortHandler* openNewReader(SerialSettings *seriasSettings);
+
 signals:
 
 public slots:

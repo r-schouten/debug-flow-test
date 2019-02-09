@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     sharedData = new SharedData();
     Node *newNode = new SerialNode(sharedData);
     nodes.append(newNode);
+    ((SerialNode*)newNode)->openPort();
 }
 
 MainWindow::~MainWindow()

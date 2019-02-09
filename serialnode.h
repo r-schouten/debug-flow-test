@@ -6,25 +6,27 @@
 #include "node.h"
 #include <QTextStream>
 #include <QSerialPort>
-#include "serialportreader.h"
+#include "serialportHandler.h"
 #include "shareddata.h"
 #include "serialportmanager.h"
+#include "serialsettings.h"
 class SerialNode : public InputNode
 {
     Q_OBJECT
 private:
     //the serial port manager provides the serialPortReader object, because a serial port can be used for multiple nodes
-    SerialPortManager *serialPortManager = new SerialPortManager(sharedData);
+    SerialPortManager *serialPortManager = new SerialPortManager();
 
     //the serial object where the data comes from
-    SerialPortReader* serialPortReader = nullptr;
+    SerialPortHandler* serialPortHandler = nullptr;
 
-    SerialPortManager::SerialSettings serialSettings;
+    SerialSettings serialSettings;
 
-    void openPort();
-    void closePort();
+
 public:
     SerialNode(SharedData *sharedData);
+    void openPort();
+    void closePort();
 };
 
 #endif // SERIALNODE_H
