@@ -6,6 +6,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
+    qDebug("started");
+
+    sharedData = new SharedData();
+    Node *newNode = new SerialNode(sharedData);
+    nodes.append(newNode);
+    ((SerialNode*)newNode)->openPort();
 }
 
 MainWindow::~MainWindow()

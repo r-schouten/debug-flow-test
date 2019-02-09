@@ -2,7 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QObject>
+#include "Node.h"
+#include "inputnode.h"
+#include "serialnode.h"
+#include "shareddata.h"
 namespace Ui {
 class MainWindow;
 }
@@ -17,6 +21,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QList<Node*> nodes;
+    SharedData *sharedData;
 };
 
 #endif // MAINWINDOW_H
